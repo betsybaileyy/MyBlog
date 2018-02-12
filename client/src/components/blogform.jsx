@@ -23,7 +23,7 @@ class BlogForm extends Component {
             <form className="card p-3 m-1">
                 <label
                     htmlFor="text-input"
-                    className="d-block m-2">Create a Post:
+                    className="d-block m-2">{this.props.action} Post:
                 </label>
                 <input
                     value={this.state.title}
@@ -31,7 +31,7 @@ class BlogForm extends Component {
                     className="form-control w-70 m-2 d-inline"
                     placeholder="Title"
                 />
-                <textarea 
+                <textarea
                     value={this.state.content}
                     onChange={(event) => { this.handleContentChange(event.target.value) }}
                     className="form-control w-70 m-2 d-inline"

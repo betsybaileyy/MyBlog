@@ -23,7 +23,7 @@ class NavBar extends Component {
                                 <span className="sr-only">(current)</span>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/posts">Posts</Link>
+                                <Link className="nav-link" to="/posts">Archive</Link>
                             </li>
                         </ul>
                         <span className="navbar-text">

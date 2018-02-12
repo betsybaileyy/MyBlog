@@ -4,6 +4,8 @@ import NavBar from './navbar';
 import Blogs from './blogs';
 import BlogPage from './blogpage';
 import About from './about';
+import Archive from './archive';
+import Post from './post';
 
 class Navigation extends Component {
 
@@ -16,6 +18,7 @@ class Navigation extends Component {
                         <Route exact path="/" component={Blogs} />
                         <Route exact path="/blog/:id" component={BlogPage} />
                         <Route exact path="/about" component={About} />
+                        <Route exact path="/posts" component={Archive} />
                     </Switch>
                 </Fragment>
             </Router>

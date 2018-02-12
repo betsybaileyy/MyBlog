@@ -38,29 +38,24 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    blogs.delete(req.params.id);
-
-    res.sendStatus(200);
+    blogs.delete(req.params.id)
+        .then(() => {
+            res.sendStatus(200);
+        }).catch((err) => {
+            console.log(err);
+        });
 });
 
-// router.put('/:id', (req, res) => {
-//     const id = req.params.id;
-//     const chirp = store.GetChirp(id);
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
 
-//     if (!chirp || Object.keys(chirp).length === 0) {
-//         res.sendStatus(404);
-//         return;
-//     }
-
-
-//     console.log('here in update');
-//     console.log(id);
-//     console.log(req.body);
-
-//     store.UpdateChirp(id, req.body);
-
-//     res.sendStatus(200);
-// });
+    blogs.update(id, req.body)
+        .then((result) => {
+            res.json(result);
+        }).catch((err) => {
+            console.log(err);
+        });
+});
 
 
 

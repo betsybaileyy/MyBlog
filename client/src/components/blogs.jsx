@@ -45,7 +45,7 @@ class Blogs extends Component {
     render() {
         return (
             <div className="container">
-                <BlogForm postBlog={(post) => { this.addBlog(post); }} />
+                <BlogForm action='Create' postBlog={(post) => { this.addBlog(post); }} />
                 <Posts posts={this.state.blogs} />
             </div>
         );

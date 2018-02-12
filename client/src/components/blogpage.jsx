@@ -30,10 +30,6 @@ class BlogPage extends Component {
             });
     };
 
-    // handleInputChange(text) {
-    //     this.setState({ text });
-    // };
-
     delete() {
         fetch(`/api/blogs/${this.props.match.params.id}`, {
             method: 'DELETE',
@@ -43,25 +39,22 @@ class BlogPage extends Component {
             console.log(err);
         });
     }
-    // updateChirp(text) {
-    //     this.setState({ text });
-    //     console.log(text);
-    //     fetch(`/api/chirps/${this.props.match.params.id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             text
-    //         })
-    //     }).then(() => {
-    //         this.props.history.push('/');
-    //         console.log('update success')
-    //     }).catch((err) => {
-    //         console.log(err);
-    //     });
-    // }
 
+    updatePost(post) {
+        this.setState({ post });
+
+        fetch(`/api/blogs/${this.props.match.params.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+        }).then(() => {
+            console.log('update success')
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     render() {
         return (
@@ -72,21 +65,9 @@ class BlogPage extends Component {
                 <div>
                     <button onClick={() => { this.delete() }}>Delete</button>
                 </div>
-                {/* <div>
-                    <input
-                        onChange={(event) => { this.handleInputChange(event.target.value) }}
-                        className="form-control w-70 m-2 d-inline"
-                        placeholder="what would you like to change?"
-                    />
-                </div>
-                <button
-                    onClick={() => { this.updateChirp(this.state.text) }}
-                    type="button"
-                    className="btn btn-primary m-2">Update
-                </button> */} 
+                <BlogForm action='Update' postBlog={(post) => { this.updatePost(post); }} />
             </React.Fragment>
         )
-
     }
 }
 
