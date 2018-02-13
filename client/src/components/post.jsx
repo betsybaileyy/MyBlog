@@ -7,8 +7,8 @@ const Post = (props) => {
     return (
         <div className="card m-1">
             <div className="card-body text-left">
-                <div>
-                    <Link to={`/blog/${post.id}`} className="btn btn-primary">See Details</Link>
+                <div className="details-container">
+                    <Link to={`/blog/${post.id}`} className="lead">See Details</Link>
                 </div>
                 <h3>{post.title}</h3>
                 <p className="card-text">

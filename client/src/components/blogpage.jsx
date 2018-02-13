@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Post from './post';
-import BlogForm from './blogForm';
+import BlogForm from './blogform';
 
 class BlogPage extends Component {
     constructor(props) {
