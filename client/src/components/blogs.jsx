@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BlogForm from './blogform';
 import Posts from './posts';
+import * as blogService from '../services/blogs';
 
 class Blogs extends Component {
     constructor(props) {
@@ -16,14 +17,12 @@ class Blogs extends Component {
     }
 
     getBlogs() {
-        fetch('/api/blogs/')
-            .then((response) => {
-                return response.json();
-            }).then((posts) => { 
+        blogService.all()
+            .then((posts) => {
                 this.setState({
                     blogs: posts
                 });
-            }).catch((err) => { 
+            }).catch((err) => {
                 console.log(err);
             });
     }

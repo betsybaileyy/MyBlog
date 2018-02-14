@@ -1,5 +1,6 @@
 const express = require('express'); //?
 import Table from '../table';
+import { isLoggedIn } from '../middleware/auth.mw';
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.get('/:id?', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => { //isLoggedIn
     blogs.insert(req.body)
         .then((result) => {
             res.json(result);
