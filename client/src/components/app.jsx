@@ -10,7 +10,8 @@ import PrivateRoute from './auth/privateRoute';
 import Login from './auth/login';
 import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
-// import GoodbyeWorld from './goodbye';
+import ViewIndPost from './viewIndPost';
+import AdminPortal from './adminPortal';
 
 
 class Navigation extends Component {
@@ -25,11 +26,11 @@ class Navigation extends Component {
                         <Route exact path="/" component={Blogs} />
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
-                        {/* <PrivateRoute path="/goodbye" component={GoodbyeWorld} /> */}
-                        <Route exact path="/blog/:id" component={BlogPage} />
+                        <PrivateRoute exact path="/editblog/:id" component={BlogPage} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/posts" component={Archive} />
-                        
+                        <Route exact path="/blog/:id" component={ViewIndPost} />
+                        <PrivateRoute exact path="/adminportal" component={AdminPortal} />
                     </Switch>
                 </Fragment>
             </Router>

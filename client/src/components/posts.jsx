@@ -7,7 +7,7 @@ class Posts extends Component {
             <Fragment>
                 {this.props.posts.map((p, index) => {
                     return (
-                        <Post key={index} post={p} />
+                        <Post loggedIn={this.props.loggedIn} key={index} post={p} />
                     );
                 })}
             </Fragment>

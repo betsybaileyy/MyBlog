@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as blogService from '../services/blogs';
 
 class BlogForm extends Component {
     constructor(props) {

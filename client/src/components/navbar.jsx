@@ -26,9 +26,9 @@ class NavBar extends Component {
                                 <Link className="nav-link" to="/posts">Archive</Link>
                             </li>
                         </ul>
-                        <span className="navbar-text">
-                            The Usual
-                        </span>
+                        <li className="navbar-text">
+                            <Link className="nav-link" to="/adminPortal">Admin Portal</Link>
+                        </li>
                     </div>
                 </nav>
             </React.Fragment>

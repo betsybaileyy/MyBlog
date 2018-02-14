@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import BlogForm from './blogform';
 import Posts from './posts';
 import * as blogService from '../services/blogs';
-import * as userService from '../services/user';
 
-class Blogs extends Component {
+class AdminPortal extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            blogs: [],
-            loggedIn: false
+            blogs: []
         };
     }
 
     componentDidMount() {
         this.getBlogs();
-        userService.checkLogin()
-            .then((loggedIn) => {
-                this.setState({ loggedIn });
-            });
     }
 
     getBlogs() {
@@ -30,18 +24,21 @@ class Blogs extends Component {
                 });
             }).catch((err) => {
                 console.log(err);
-            });
+            }); 
     }
 
     addBlog(post) {
-        fetch('/api/blogs/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        }).then(() => {
-            this.getBlogs();
+        this.setState({ post });
+        blogService.insert(post)
+        // fetch('/api/blogs/', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(post)
+        //})
+        .then(() => {
+            // this.getBlogs();
         }).catch((err) => {
             console.log(err);
         });
@@ -50,10 +47,11 @@ class Blogs extends Component {
     render() {
         return (
             <div className="container">
-                <Posts loggedIn={this.state.loggedIn} posts={this.state.blogs} />
+                <BlogForm action='Create' postBlog={(post) => { this.addBlog(post); }} />
+                <Posts posts={this.state.blogs} />
             </div>
         );
     }
 }
 
-export default Blogs;
+export default AdminPortal;
