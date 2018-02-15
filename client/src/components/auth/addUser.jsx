@@ -2,10 +2,8 @@ import React, { Component, Fragment } from 'react';
 import * as userService from '../../services/user';
 import { Redirect } from 'react-router-dom';
 import IndeterminateProgress from '../utilities/indeterminateProgress';
-import AddUser from './addUser';
-import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class AddUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,24 +11,13 @@ class Login extends Component {
             email: '',
             password: '',
             feedbackMessage: '',
-            checkingLogin: true
         };
     }
 
-    componentDidMount() {
-        userService.checkLogin()
-        .then((loggedIn) => {
-            if (loggedIn) {
-                this.setState({ redirectToReferrer: true, checkingLogin: false });
-            } else {
-                this.setState({ checkingLogin: false });
-            }
-        });
-    }
 
-    login(e) {
+    addUser(e) {
         e.preventDefault();
-        userService.login(this.state.email, this.state.password)
+        userService.addUser(this.state.email, this.state.password)
         .then(() => {
             this.setState({ redirectToReferrer: true });
         }).catch((err) => {
@@ -50,11 +37,8 @@ class Login extends Component {
 
     render() {
        const { from } = this.props.location.state || { from: { pathname: '/' } };
-       const { redirectToReferrer, checkingLogin } = this.state;
+       const { redirectToReferrer } = this.state;
 
-       if (checkingLogin) {
-           return <IndeterminateProgress message="Checking Login Status..." />;
-       }
        if (redirectToReferrer) {
            return (
                <Redirect to={from} />
@@ -63,8 +47,8 @@ class Login extends Component {
 
        return (
            <Fragment>
-                <p>You must be logged in to view this page.</p>
-                <form onSubmit={(e) => this.login(e)}>
+                <p>Create your profile:</p>
+                <form onSubmit={(e) => this.addUser(e)}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input id="email" className="form-control" type="email" onChange={(e) => this.handleEmailChange(e.target.value)} required /> 
@@ -76,12 +60,11 @@ class Login extends Component {
                     {this.state.feedbackMessage ? (
                         <p>{ this.state.feedbackMessage }</p>
                     ): null}
-                     <Link to={"/adduser"}>Sign Up</Link>
-                    <input type="submit" value="Login" className="btn btn-primary" />
+                    <input type="submit" value="Sign Up" className="btn btn-primary" />
                 </form>
             </Fragment>
        );
     }
 }
 
-export default Login;
+export default AddUser;

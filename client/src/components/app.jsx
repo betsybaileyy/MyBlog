@@ -12,7 +12,7 @@ import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
 import ViewIndPost from './viewIndPost';
 import AdminPortal from './adminPortal';
-
+import AddUser from './auth/addUser';
 
 class Navigation extends Component {
 
@@ -24,6 +24,7 @@ class Navigation extends Component {
                     <AuthButton />
                     <Switch>
                         <Route exact path="/" component={Blogs} />
+                        <Route exact path="/adduser" component={AddUser} />
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
                         <PrivateRoute exact path="/editblog/:id" component={BlogPage} />

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as userServices from '../services/user';
 
 function renderEditLink(post, loggedIn) {
-    if (loggedIn) {
+    if (userServices.isLoggedIn()) {
         return <Link to={`/editblog/${post.id}`} className="lead">Edit</Link>;
     }
 }
