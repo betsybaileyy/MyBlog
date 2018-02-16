@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import About from './about';
 import { Link } from 'react-router-dom';
+import AuthButton from './auth/authButton';
+import Login from './auth/login';
 
 class NavBar extends Component {
 
@@ -28,6 +30,8 @@ class NavBar extends Component {
                         </ul>
                         <li className="navbar-text">
                             <Link className="nav-link" to="/adminPortal">Admin Portal</Link>
+                            <br></br>
+                            <AuthButton className="nav-link" />
                         </li>
                     </div>
                 </nav>

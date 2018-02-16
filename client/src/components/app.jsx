@@ -21,7 +21,6 @@ class Navigation extends Component {
             <Router>
                 <Fragment>
                     <NavBar />
-                    <AuthButton />
                     <Switch>
                         <Route exact path="/" component={Blogs} />
                         <Route exact path="/adduser" component={AddUser} />
