@@ -28,11 +28,15 @@ class NavBar extends Component {
                                 <Link className="nav-link" to="/posts">Archive</Link>
                             </li>
                         </ul>
+                        <ul>
                         <li className="navbar-text">
                             <Link className="nav-link" to="/adminPortal">Admin Portal</Link>
-                            <br></br>
-                            <AuthButton className="nav-link" />
                         </li>
+                        <li className="navbar-text">
+                            <AuthButton className="nav-link" />
+                         
+                        </li>
+                        </ul>
                     </div>
                 </nav>
             </React.Fragment>

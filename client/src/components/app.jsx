@@ -13,6 +13,7 @@ import AuthButton from './auth/authButton';
 import ViewIndPost from './viewIndPost';
 import AdminPortal from './adminPortal';
 import AddUser from './auth/addUser';
+// import Donate from './utilities/donate';
 
 class Navigation extends Component {
 
@@ -28,6 +29,7 @@ class Navigation extends Component {
                         <Route path="/logout" component={Logout} />
                         <PrivateRoute exact path="/editblog/:id" component={BlogPage} />
                         <Route exact path="/about" component={About} />
+                        {/* <Route path="/donate" component={Donate} /> */}
                         <Route exact path="/posts" component={Archive} />
                         <Route exact path="/blog/:id" component={ViewIndPost} />
                         <PrivateRoute exact path="/adminportal" component={AdminPortal} />

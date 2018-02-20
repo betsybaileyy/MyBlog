@@ -52,6 +52,16 @@ class Table {
         let sql = `DELETE FROM ${this.tableName} WHERE id = ${id}`;
         return executeQuery(sql);
     }
+
+    deleteAll(query) {
+        let columns = Object.keys(query);
+        let values = Object.values(query);
+        let conditions = columns.map((columnName) => {
+            return `${columnName} LIKE ?`;
+        });
+        let sql = `DELETE FROM ${this.tableName} WHERE ${conditions.join(' AND ')};`;
+        return executeQuery(sql, values);
+    }
 }
 
 export default Table;

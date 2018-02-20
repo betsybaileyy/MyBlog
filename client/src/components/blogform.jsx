@@ -7,7 +7,8 @@ class BlogForm extends Component {
 
         this.state = {
             title: '',
-            content: ''
+            content: '',
+            tags: []
         };
     }
 
@@ -18,8 +19,31 @@ class BlogForm extends Component {
     handleContentChange(content) {
         this.setState({ content });
     }
+    handleTagChange(tagStr) {
+        // 'JS, HTML'
 
+        let tagStrArray = tagStr.split(', ');
+        let tags = tagStrArray.map((tag) => {
+            return { name: tag };
+        });
+
+        this.setState({ tags });
+    }
     render() {
+        // [{ name: 'JS' }, { name: 'HTML' }]
+        let tags = this.state.tags;
+    
+        // iterate through tag
+        // accumulate the name properties
+        // join the names together, separated by ', '
+
+        // ['JS', 'HTML']
+        let tagStrArray = tags.map((tag) => {
+            return tag.name;
+        });
+
+        let tagStr = tagStrArray.join(', ');
+
         return (
             <form className="card p-3 m-1">
                 <label
@@ -37,6 +61,12 @@ class BlogForm extends Component {
                     onChange={(event) => { this.handleContentChange(event.target.value) }}
                     className="form-control w-70 m-2 d-inline"
                     placeholder="Post Content"
+                />
+                <input
+                    value={tagStr}
+                    onChange={(event) => { this.handleTagChange(event.target.value) }}
+                    className="form-control w-70 m-2 d-inline"
+                    placeholder="Tags"
                 />
                 <button
                     onClick={() => { this.props.postBlog(this.state) }}
