@@ -61,7 +61,7 @@ router.get('/:id?', (req, res) => {
 
             return post;
         })
-        .then((blog) => {
+         .then((blog) => {
             res.json(blog);
         })
         .catch((err) => {
@@ -85,7 +85,7 @@ router.post('/', (req, res) => {
 
     let tags = req.body.tags;
 
-    // insert a new post, get id
+    // insert a new post, get id 
     blogTable
         .insert(post)
         .then((result) => {
@@ -155,8 +155,13 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id;
 
+    let post = {
+        title: req.body.title,
+        content: req.body.content,
+    };
+
     blogTable
-        .update(id, req.body)
+        .update(id, post)
         .then((result) => {
             res.json(result);
         })

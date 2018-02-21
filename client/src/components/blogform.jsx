@@ -12,6 +12,26 @@ class BlogForm extends Component {
         };
     }
 
+    getPost() {
+        let postProp = this.props.post;
+        let state = this.state;
+
+        if (!postProp) {
+            return state;
+        }
+
+        if (!state.title && !state.content) {
+            state.title = postProp.title;
+            state.content = postProp.content;
+
+            if (Array.isArray(postProp.tags)) {
+                state.tags = postProp.tags;
+            }
+        }
+
+        return state;
+    }
+
     handleTitleChange(title) {
         this.setState({ title });
     }
@@ -30,9 +50,10 @@ class BlogForm extends Component {
         this.setState({ tags });
     }
     render() {
+        let post = this.getPost();
         // [{ name: 'JS' }, { name: 'HTML' }]
-        let tags = this.state.tags;
-    
+        let tags = post.tags;
+
         // iterate through tag
         // accumulate the name properties
         // join the names together, separated by ', '
@@ -51,13 +72,13 @@ class BlogForm extends Component {
                     className="d-block m-2">{this.props.action} Post:
                 </label>
                 <input
-                    value={this.state.title}
+                    value={post.title}
                     onChange={(event) => { this.handleTitleChange(event.target.value) }}
                     className="form-control w-70 m-2 d-inline"
                     placeholder="Title"
                 />
                 <textarea
-                    value={this.state.content}
+                    value={post.content}
                     onChange={(event) => { this.handleContentChange(event.target.value) }}
                     className="form-control w-70 m-2 d-inline"
                     placeholder="Post Content"
@@ -75,7 +96,7 @@ class BlogForm extends Component {
                 </button>
             </form>
         );
-    };
+    }; 
 }
 
 export default BlogForm;

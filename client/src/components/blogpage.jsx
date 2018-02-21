@@ -22,7 +22,7 @@ class BlogPage extends Component {
         this.getPost();
     }
 
-    getPost() { //posts vs blogs here?
+    getPost() { 
         blogService.one(this.props.match.params.id)
             .then((post) => {
                 this.setState({ post });
@@ -57,7 +57,7 @@ class BlogPage extends Component {
                 <div>
                     <button onClick={() => { this.delete() }}>Delete</button>
                 </div>
-                <BlogForm action='Update' postBlog={(post) => { this.updatePost(post); }} />
+                <BlogForm action='Update' post={this.state.post} postBlog={(post) => { this.updatePost(post); }} />
             </React.Fragment>
         )
     }
